@@ -16,7 +16,6 @@ const displayBook = books => {
   authorContainer.innerHTML = '';
   displayBookContainer.innerHTML = '';
   books.forEach(book => {
-    console.log(book)
     const {author_name, publish_year, title, publish_place, publisher, cover_i, author_key} = book;
     const imgURL = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`
     const altImgURL = './img/not-found-img.png'
@@ -24,8 +23,8 @@ const displayBook = books => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('col');
     cardDiv.innerHTML = `
-      <div class="card h-100">
-        <img src=${cover_i == undefined ? altImgURL : imgURL} class="card-img-top h-100 w-100" alt=${title}>
+      <div class="card h-100 px-5 py-3">
+        <img src=${cover_i == undefined ? altImgURL : imgURL} class="card-img-top h-100 w-100 rounded-3" alt=${title}>
         <div class="card-body">
           <h5 class="card-title">Title: ${title}</h5>
           <h6 class="card-text">Author: ${author_name[0]}</h6>
@@ -53,11 +52,9 @@ const authorDetails = (authorKey) => {
 }
 
 const displayAuthor = (author, key) => {
-  console.log(author)
   const authorContainer = document.getElementById('author-container');
-
   const {name, birth_date, bio} = author;
-  const imgURL = `https://covers.openlibrary.org/a/olid/${key}-L.jpg`
+  const imgURL = `https://covers.openlibrary.org/a/olid/${key}-M.jpg`
   // const altImgURL = './img/not-found-img.png'
 
   authorContainer.innerHTML = `
@@ -71,6 +68,7 @@ const displayAuthor = (author, key) => {
             <h5 class="card-title">Author: ${name}</h5>
             <h6 class="card-text">BOD: ${birth_date ? birth_date : 'Not Found'}</h6>
             <p class="card-text"><b>Biography:</b> ${bio ? bio.value.slice(0, 100) : 'Not Found'}</p>
+            
           </div>
         </div>
       </div> 
